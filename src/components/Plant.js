@@ -36,7 +36,7 @@ const Plant = (props) => {
         <div className='flex -mt-px divide-x divide-gray-200'>
           <div className='flex flex-1 w-0'>
             <Link
-              to='#'
+              to={`/update-plant/${plant.id}`}
               className='relative inline-flex items-center justify-center flex-1 w-0 py-4 -mr-px text-sm font-medium text-gray-700 border border-transparent rounded-bl-lg hover:text-gray-500'
             >
               <RefreshIcon

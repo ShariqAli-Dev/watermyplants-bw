@@ -15,13 +15,11 @@ const SignUp = () => {
     const values =
       e.target.type === 'checkbox' ? e.target.checked : e.target.value;
     setValue({ ...value, [e.target.name]: values });
-    console.log(values);
   };
 
   const submitHandler = (event) => {
     event.preventDefault();
-    axios
-      .post(`#`, value)
+    axios.post(`#`, value)``
       .then((res) => {
         alert(res.data, 'Data!: res.data');
         setPost([...post, res.data]);
@@ -52,7 +50,7 @@ const SignUp = () => {
   const [post, setPost] = useState([]);
 
   return (
-    <>
+    <div>
       <h3> Sign Up Form</h3>
       <form id='sign-up-form' onSubmit={submitHandler}>
         <label htmlFor='firstName'>
@@ -99,7 +97,7 @@ const SignUp = () => {
           Submit
         </button>
       </form>
-    </>
+    </div>
   );
 };
 export default SignUp;

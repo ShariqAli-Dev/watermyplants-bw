@@ -1,14 +1,11 @@
 import {
   ADD_PLANT,
-  FETCH_PLANTS_START,
-  FETCH_PLANTS_SUCCESS,
-  FETCH_PLANTS_FAILURE,
-  SET_ERROR,
   DELETE_PLANT,
-  EDIT_PLANT,
   LOGGED_IN_USER,
   LOGGED_OUT_USER,
   WATER_PLANT,
+  UPDATE_PLANT,
+  UPDATE_USER,
 } from '../actions';
 
 export const initialState = {
@@ -25,13 +22,6 @@ export const initialState = {
         species: 'Pachira aquatica',
         h2oFrequency: 1.6,
         currentFreq: '0.42 day(s)',
-      },
-      {
-        nickname: 'Fiddle Leaf Fig',
-        id: '542543',
-        species: 'Ficus lyrata',
-        h2oFrequency: 0.86,
-        currentFreq: '0.78 day(s)',
       },
       {
         nickname: 'Rubber Plant',
@@ -85,6 +75,14 @@ const reducer = (state = initialState, action) => {
           plants: [],
         },
       };
+    case UPDATE_USER:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          ...action.payload,
+        },
+      };
     case ADD_PLANT:
       return {
         ...state,
@@ -111,7 +109,6 @@ const reducer = (state = initialState, action) => {
           plants: [
             ...state.user.plants.map((plant) => {
               if (plant.id === action.payload) {
-                console.log(plant.h2oFrequency);
                 return {
                   ...plant,
                   currentFreq: `${plant.h2oFrequency} day(s)`,
@@ -120,6 +117,21 @@ const reducer = (state = initialState, action) => {
               return plant;
             }),
           ],
+        },
+      };
+    case UPDATE_PLANT:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          plants: state.user.plants.map((plant, index) => {
+            if (plant.id === action.payload.id)
+              return {
+                ...action.payload.plantInfo,
+                currentFreq: state.user.plants[index].currentFreq,
+              };
+            return plant;
+          }),
         },
       };
     default:

@@ -4,7 +4,6 @@ import { Route, Switch } from 'react-router-dom';
 import AddPlant from './views/AddPlant';
 import Home from './views/Home';
 import Auth from './views/Auth.js.js';
-import SignUp from './views/SignUp';
 import UpdateUser from './views/UpdateUser';
 import Navbar from './components/Navbar';
 import AboutUs from './views/about/AboutUs';
@@ -14,13 +13,17 @@ import {
   homeObjTwo,
   homeObjFour,
 } from './views/about/Data';
+import UpdatePlant from './views/UpdatePlant';
 
 function App() {
   return (
     <div className='h-full bg-indigo-100'>
       <Switch>
+        <Route path='/update-plant/:id'>
+          <UpdatePlant />
+        </Route>
+
         <Route path='/update-profile'>
-          <Navbar />
           <UpdateUser />
         </Route>
 
